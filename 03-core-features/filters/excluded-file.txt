@@ -1,1 +1,1 @@
-Hello this edit should not trigger a workflow
+Hello this edit should not trigger a workflow as it is not included in the workflow filter
