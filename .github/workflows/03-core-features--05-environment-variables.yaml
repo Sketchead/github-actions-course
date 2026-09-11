@@ -32,3 +32,12 @@ jobs:
           echo "WORKFLOW_VAR: $WORKFLOW_VAR"                 # still visible
           echo "JOB_VAR:      ${FOO:-<UNSET>}"               # not set here
           echo "STEP_VAR:     ${STEP_VAR:-<UNSET>}"          # not set here
+
+  job-3:
+    runs-on: ubuntu-24.04
+    env:
+      WORKFLOW_VAR: I_AM_JOB_3_SCOPED
+    steps:
+      - name: Inspect scopes job 3 step 1
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"                 # should override workflow value with I AM JOB 3 scoped
