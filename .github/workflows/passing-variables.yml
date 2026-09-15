@@ -9,8 +9,8 @@ jobs:
     passes-variables:
         runs-on: ubuntu-latest
         outputs:
-            var-1: ${{steps.creates-variables.outputs.var-1}}
-            var-2: ${{steps.creates-variables.outputs.var-2}}
+            var-1: ${{steps.creates-variables.outputs.var_1}}
+            var-2: ${{steps.creates-variables.outputs.var_2}}
         steps:
             - name: creates variables
               id: creates-variables
