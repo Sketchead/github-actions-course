@@ -15,16 +15,16 @@ jobs:
             - name: creates variables
               id: creates-variables
               run: |
-                  var-1=ola
-                  var-2=ola otra vez
+                  var_1=ola
+                  var_2=ola otra vez
 
-                    echo "var-1=${var-1}" >> $GITHUB_OUTPUT
-                    echo "var_2=${var-2}" >> $GITHUB_ENV
+                    echo "var_1=${var_1}" >> $GITHUB_OUTPUT
+                    echo "var_2=${var_2}" >> $GITHUB_ENV
 
             - name: check variables scope
               run: |
-                  echo "var-1: ${{steps.creates-variables.outputs.var-1}}"
-                  echo "var-2: ${{env.var_2}}"
+                  echo "var_1: ${{steps.creates-variables.outputs.var_1}}"
+                  echo "var_2: ${{env.var_2}}"
 
     consumes-variables:
         runs-on: ubuntu-latest
@@ -32,5 +32,5 @@ jobs:
         steps:
             - name: check variables scope
               run: |
-                  echo "var-1: ${{needs.passes-variables.outputs.var-1}}"
-                  echo "var-2: ${{env.var_2}}"
+                  echo "var_1: ${{needs.passes-variables.outputs.var_1}}"
+                  echo "var_2: ${{env.var_2}}"
