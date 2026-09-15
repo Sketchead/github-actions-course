@@ -1,0 +1,36 @@
+name: Atx Passing variables
+run-name: ${{github.run_number}} passing step/job and environment variables
+
+on:
+    push:
+        branches:
+            - main
+jobs:
+    passes-variables:
+        runs-on: ubuntu-latest
+        outputs:
+            var-1: ${{steps.creates-variables.outputs.var-1}}
+            var-2: ${{steps.creates-variables.outputs.var-2}}
+        steps:
+            - name: creates variables
+              id: creates-variables
+              run: |
+                  var-1=ola
+                  var-2=ola otra vez
+
+                    echo "var-1=${var-1}" >> $GITHUB_OUTPUT
+                    echo "var_2=${var-2}" >> $GITHUB_ENV
+
+            - name: check variables scope
+              run: |
+                  echo "var-1: ${{steps.creates-variables.outputs.var-1}}"
+                  echo "var-2: ${{env.var_2}}"
+
+    consumes-variables:
+        runs-on: ubuntu-latest
+        needs: passes-variables
+        steps:
+            - name: check variables scope
+              run: |
+                  echo "var-1: ${{needs.passes-variables.outputs.var-1}}"
+                  echo "var-2: ${{env.var_2}}"
