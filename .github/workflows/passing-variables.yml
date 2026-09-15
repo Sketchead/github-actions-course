@@ -16,7 +16,7 @@ jobs:
               id: creates-variables
               run: |
                   var_1=ola
-                  var_2=ola otra vez
+                  var_2="ola otra vez"
 
                     echo "var_1=${var_1}" >> $GITHUB_OUTPUT
                     echo "var_2=${var_2}" >> $GITHUB_ENV
